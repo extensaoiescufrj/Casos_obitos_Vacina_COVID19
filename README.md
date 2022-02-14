@@ -1,7 +1,5 @@
 # Casos_obitos_Vacina_COVID19
 
-Trabalho apresentado na 11ª SIAc – Semana de Integração Acadêmica da UFRJ 2021-2022
-
 Título: SRAG por COVID-19: cobertura vacinal, casos e óbitos no estado do Rio de Janeiro
 
 Autores: Édnei César de Arruda Santos Junior¹, Mariana da Silva Costa¹ e Pedro Henrique Mattos ferreira¹, Natalia Santana Paiva², Antonio José Leal Costa² e Ana Paula Razal Dalvi³
@@ -16,4 +14,6 @@ Objetivo: O presente estudo pretende avaliar a influência da vacinação sobre 
 
 Fonte de dados: Sistema de Informação da Vigilância Epidemiológica da Gripe (SIVEP-Gripe); Sistema de Informações do Programa Nacional de Imunização (SI-PNI), Sistema IBGE de Recuperação Automática (SIDRA)
 
-- Disponibilizamos as bases de dados (de acesso público) e o script R.
+
+- Trabalho apresentado na 11ª SIAc – Semana de Integração Acadêmica da UFRJ 2021-2022
+- Disponibilizamos as bases de dados (públicas) e script R com as rotinas de autoria própria
