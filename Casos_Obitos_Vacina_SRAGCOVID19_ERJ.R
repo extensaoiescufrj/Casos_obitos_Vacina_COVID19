@@ -1,10 +1,9 @@
-### CASOS E ÓBITOS DE SRAG POR COVID19 no Estado do Rio de Janeiro
-### COBERTURA VACINAL CONTRA COVID-19 no Estado do Rio de Janeiro
+### VACINAÇÃO NO RIO ###
 # UNIVERSIDADE FEDERAL DO RIO DE JANEIRO
 # INSTITUTO DE ESTUDOS EM SAÚDE COLETIVA
 # PROJ. EXTENSÃO - Apoio às ações de vigilância epidemiológica no enfrentamento da epidemia de COVID-19
-### BANCO DE SRAG CONSOLIDADO ATÉ 30/09/2021 - SIVEP GRIPE
-### BANCO DE VACINAÇÃO CONSOLIDADO ATÉ 08/02/2022 - Extraído do TABNET do ERJ
+### BANCO DE SRAG CONSOLIDADO ATÉ 30/09/2021
+### BANCO DE VACINAÇÃO CONSOLIDADO ATÉ 08/02/2022
 ### Alunos: Édnei César, Mariana Costa e Pedro Mattos
 ### Orientadores: Natália Paiva, Ana Paula e Antonio José
 
@@ -23,89 +22,91 @@ library(tidyverse)
 
 # BASES ORIGINAIS SIVEP
  
-corona_2020 <- read.csv("INFLUD-20-09-2021_2020.csv", sep = ";", dec = ",")
-corona_2021 <- read.csv("INFLUD21-20-09-2021.csv", sep = ";", dec = ",")
+#corona_2020 <- read.csv("INFLUD-20-09-2021_2020.csv", sep = ";", dec = ",")
+#corona_2021 <- read.csv("INFLUD21-20-09-2021.csv", sep = ";", dec = ",")
 
 # FILTRANDO A BASE APENAS PARA A SEMANA EPIDEMIOLOGICA 
 
-table(corona_2020$SEM_NOT)
-table(corona_2021$SEM_NOT)
+#table(corona_2020$SEM_NOT)
+#table(corona_2021$SEM_NOT)
  
-corona_2020_jul <- corona_2020[corona_2020$SEM_NOT >= 31,]
+#corona_2020_jul <- corona_2020[corona_2020$SEM_NOT >= 31,]
  
-corona_2021_jul <- corona_2021[corona_2021$SEM_NOT <= 31,]
+#corona_2021_jul <- corona_2021[corona_2021$SEM_NOT <= 31,]
  
-table(corona_2020_jul$SEM_NOT)
-table(corona_2021_jul$SEM_NOT)
+#table(corona_2020_jul$SEM_NOT)
+#table(corona_2021_jul$SEM_NOT)
  
-rm(corona_2020)
-rm(corona_2021)
+#rm(corona_2020)
+#rm(corona_2021)
  
-# Filtando para o estado do RIO DE JANEIRO
+# Filtando para o RIO
 
-table(corona_2020_jul$SG_UF)
-table(corona_2021_jul$SG_UF)
+#table(corona_2020_jul$SG_UF)
+#table(corona_2021_jul$SG_UF)
 
-corona_2020_jul_rj <- corona_2020_jul%>%
-  filter(SG_UF == "RJ")
+#corona_2020_jul_rj <- corona_2020_jul%>%
+#  filter(SG_UF == "RJ")
 
-corona_2021_jul_rj <- corona_2021_jul%>%
-  filter(SG_UF == "RJ")
+#corona_2021_jul_rj <- corona_2021_jul%>%
+#  filter(SG_UF == "RJ")
 
 # REMOVENDO AS BASES 
 
-rm(corona_2020_jul)
-rm(corona_2021_jul)
+#rm(corona_2020_jul)
+#rm(corona_2021_jul)
  
 #  Filtrando pra SRAG por COVID-19
 
-table(corona_2020_jul_rj$CLASSI_FIN)
-table(corona_2021_jul_rj$CLASSI_FIN)
+#table(corona_2020_jul_rj$CLASSI_FIN)
+#table(corona_2021_jul_rj$CLASSI_FIN)
  
 # 5 é por covid e 4 não especificada
 
-covid_2020_rj <- corona_2020_jul_rj %>%
-   filter(CLASSI_FIN == "5")
+#covid_2020_rj <- corona_2020_jul_rj %>%
+#   filter(CLASSI_FIN == "5")
  
-covid_2021_rj <- corona_2021_jul_rj %>%
-   filter(CLASSI_FIN == "5")
+#covid_2021_rj <- corona_2021_jul_rj %>%
+#   filter(CLASSI_FIN == "5")
 
 # REMOVENDO AS BASES
 
-rm(corona_2020_jul_rj)
-rm(corona_2021_jul_rj)
+#rm(corona_2020_jul_rj)
+#rm(corona_2021_jul_rj)
 
 # SALVANDO AS BASES
 
-write.csv2(covid_2021_rj, "covid_2021_rj.csv")
-write.csv2(covid_2020_rj, "covid_2020_rj.csv")
+#write.csv2(covid_2021_rj, "covid_2021_rj.csv")
+#write.csv2(covid_2020_rj, "covid_2020_rj.csv")
 
 
 
 #Bases
 
-corona_2020 <- read.csv2("covid_2020_rj.csv")
-corona_2021 <- read.csv2("covid_2021_rj.csv")
+#corona_2020 <- read.csv2("covid_2020_rj.csv")
+#corona_2021 <- read.csv2("covid_2021_rj.csv")
 
 # Selecionando as variáveis
 
-corona_2020 <- corona_2020 %>%
- select(SEM_NOT, DT_SIN_PRI, DT_NOTIFIC, CS_SEXO, DT_NASC, NU_IDADE_N,
-        TP_IDADE, CS_RACA, CS_ESCOL_N, ID_MN_RESI, CLASSI_FIN, EVOLUCAO)
+# corona_2020 <- corona_2020 %>%
+#  select(SEM_NOT, DT_SIN_PRI, DT_NOTIFIC, CS_SEXO, DT_NASC, NU_IDADE_N,
+#         TP_IDADE, CS_RACA, CS_ESCOL_N, ID_MN_RESI, CLASSI_FIN, EVOLUCAO)
 
-corona_2021 <- corona_2021 %>%
-select(SEM_NOT, DT_SIN_PRI, DT_NOTIFIC, CS_SEXO, DT_NASC, NU_IDADE_N,
-       TP_IDADE, CS_RACA, CS_ESCOL_N, ID_MN_RESI, CLASSI_FIN, EVOLUCAO)
+# corona_2021 <- corona_2021 %>%
+# select(SEM_NOT, DT_SIN_PRI, DT_NOTIFIC, CS_SEXO, DT_NASC, NU_IDADE_N,
+#        TP_IDADE, CS_RACA, CS_ESCOL_N, ID_MN_RESI, CLASSI_FIN, EVOLUCAO)
 
 # JUNTANDO AS DUAS BASES EM UMA
 
-covid_rj_2020_2021 <- bind_rows(corona_2020, corona_2021)
+#covid_rj_2020_2021 <- bind_rows(corona_2020, corona_2021)
 
 # SALVANDO
 
-write.xlsx(covid_rj_2020_2021, "vacinacao_rj.xlsx")
+#write.xlsx(covid_rj_2020_2021, "vacinacao_rj.xlsx")
 
+# DIRETÓRIO
 
+setwd("C:/Users/junio/Downloads/SRAG-NOVOS ALUNOS")
 
 # CORRIGINDO A BASE
 
@@ -280,7 +281,7 @@ vacina <- vacina %>%
   mutate(CLASSI_FIN = recode(CLASSI_FIN, `5` = "SRAG por COVID-19"))
 
 
-# Criando uma base de data, casos, obitos e faixa etaria
+# Criando uma base de data, casos e obitos 
 
 vacina$ano <- year(vacina$DT_NOTIFIC)
 
@@ -290,7 +291,7 @@ teste1 <- vacina %>%
   summarise(casos_graves=n(), obitos_graves=sum(EVOLUCAO=="Óbito por SRAG", na.rm=T))
 
 teste_geral <- teste1 %>%
-  group_by(fx_etaria,DT_NOTIFIC, ano,SEM_NOT) %>%
+  group_by(DT_NOTIFIC, ano,SEM_NOT) %>%
   summarise(casos = sum(casos_graves),
             obitos = sum(obitos_graves),
             .groups = "drop_last")
@@ -341,22 +342,21 @@ casos.ob.vac <- bind_rows(teste_2020, e)
 
 p1 <- casos.ob.vac%>%
   ggplot(aes(x = DT_NOTIFIC, group = 1))+
-  geom_line(aes(y = casos, colour = "Casos"), size = 1)+
-  geom_line(aes( y = obitos, colour = "Óbitos"), size = 1)+
-  geom_smooth(aes(y = cob.1adose*5), colour = "black", alpha = 0.9, linetype = "dashed", se = FALSE)+
-  annotate(x= date("2020-08-30"),y= 250 ,label= "- - Cob.vacinal (%): Esquema incompleto",hjust = "left", geom= "text", colour = "black")+
-  annotate(geom = "text", x = date("2021-08-31"), y = 348, label = "64,99%", hjust = "left", color = "black")+
-  geom_smooth(aes( y = cob.esqcompleto*5), colour = "blue", alpha = 0.9, linetype = "dashed", se = FALSE)+
-  annotate(x= date("2020-08-30"),y= 233 ,label= "- - Cob.vacinal (%): Esquema completo" ,hjust = "left", geom= "text", color = "blue")+
-  annotate(geom = "text", x = date("2021-08-31"), y = 178, label = "32,83%", hjust = "left", color = "blue")+
+  geom_bar(aes(y= casos, fill ="Casos"),stat = "identity", position = position_dodge(1))+
+  geom_bar(aes(y= obitos, fill ="Óbitos"),stat = "identity", position = position_dodge(1))+
+  geom_smooth(aes(y = cob.1adose*20), colour = "black", alpha = 0.9, linetype = "dashed", se = FALSE)+
+  annotate(x= date("2020-08-30"),y= 1100 ,label= "- - Cob.vacinal (%): Esquema incompleto",hjust = "left", geom= "text", colour = "black")+
+  annotate(geom = "text", x = date("2021-08-31"), y = 1400, label = "64,99%", hjust = "left", color = "black")+
+  geom_smooth(aes( y = cob.esqcompleto*20), colour = "blue", alpha = 0.9, linetype = "dashed", se = FALSE)+
+  annotate(x= date("2020-08-30"),y= 1005 ,label= "- - Cob.vacinal (%): Esquema completo" ,hjust = "left", geom= "text", color = "blue")+
+  annotate(geom = "text", x = date("2021-08-31"), y = 742, label = "32,83%", hjust = "left", color = "blue")+
    scale_y_continuous(name = "Frequência", 
-                     sec.axis = sec_axis(~./5, name = "Cobertura Vacinal (%)",
+                     sec.axis = sec_axis(~./20, name = "Cobertura Vacinal (%)",
                      labels = function(b) { paste0(round(b * 1, 0), "%")})) + 
-  labs(colour = "")+
+  labs(fill = "")+
   xlab("Data de notificação") + 
   ggtitle("Serie temporal dos casos e óbitos por covid-19 no Rio de Janeiro, 2020-2021")+
-  theme_minimal(base_size = 15
-                ) + #15
+  theme_minimal(base_size = 15) + #15
   scale_x_date(date_labels = "%b-%y", breaks = "1 month")+
   theme(text = element_text(size = 100), #10
         strip.text = element_text(size = 90),#9
@@ -383,4 +383,55 @@ p1
 ggsave(p1, filename = "Grafico 1_vacinacao_rj.png",  
        width = 34.3, height = 15,units = "cm", device='png',bg = "transparent", dpi = 800)
 
+
+# Tabela casos x obitos
+
+casos.2020 <- casos.ob.vac%>%
+  filter(ano == "2020")%>%
+  group_by(mes) %>%
+  summarise(casos = sum(casos),
+            obitos = sum(obitos),
+            .groups = "drop_last")
+
+casos.2021 <- casos.ob.vac%>%
+  filter(ano == "2021")%>%
+  group_by(mes, cob.1adose, cob.esqcompleto) %>%
+  summarise(casos = sum(casos),
+            obitos = sum(obitos),
+            .groups = "drop_last")
+
+# Letalidade
+
+casos.2020$letalidade <- round(casos.2020$obitos / casos.2020$casos, 2)
+casos.2021$letalidade <- round(casos.2021$obitos / casos.2021$casos, 2)
+
+# ajeitando a cobertura vacinal
+
+casos.2021$cob.1adose <- round(casos.2021$cob.1adose, 2)
+casos.2021$cob.esqcompleto <- round(casos.2021$cob.esqcompleto, 2)
+
+# Tabela
+
+library(kableExtra)
+
+tab.casos.2020 <- knitr::kable(casos.2020, align = "ccc",  format.args = list(decimal.mark = ',', big.mark = "."),
+                              caption = "Casos, óbitos e letalidade por Covid-19 no Rio de Janeiro em 2020") %>%
+  kable_classic(full_width = F, html_font = "Calibri") %>%
+  column_spec(1, bold = T)%>%
+  row_spec(0, bold=T) %>%
+  row_spec(5, bold=T)%>%
+  footnote(general = "Sistema de Informação da Vigilância Epidemiológica da Gripe (SIVEP-Gripe); Sistema de Informações do Programa Nacional de Imunização (PNI)", general_title = "Fonte de dados:")
+
+tab.casos.2020
+
+
+tab.casos.2021 <- knitr::kable(casos.2021, align = "ccc",  format.args = list(decimal.mark = ',', big.mark = "."),
+                               caption = "Casos, óbitos e letalidade por Covid-19 no Rio de Janeiro em 2021") %>%
+  kable_classic(full_width = F, html_font = "Calibri") %>%
+  column_spec(1, bold = T)%>%
+  row_spec(0, bold=T) %>%
+  row_spec(5, bold=T)%>%
+  footnote(general = "Sistema de Informação da Vigilância Epidemiológica da Gripe (SIVEP-Gripe); Sistema de Informações do Programa Nacional de Imunização (PNI)", general_title = "Fonte de dados:")
+
+tab.casos.2021
 
